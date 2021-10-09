@@ -11,14 +11,14 @@ const clientId = cfg.client
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
-	command.guildIds.forEach(element => {
-		if (command.canDeploy) {
+	if (command.canDeploy) {
+		console.log('deployable')
 		commands.push(command.data.toJSON())
-	}});
-}
+	}
+};
 console.log(commands)
 
-const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({ version: '9' }).setToken(cfg.token);
 
 (async () => {
 	try {

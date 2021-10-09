@@ -3,7 +3,6 @@ const { execSync } = require("child_process");
 const discord = require('discord.js')
 const os = require('os');
 const { exit } = require('process');
-const { authorized,blank } = require('../libs/util.js')
 
 const data = new SlashCommandBuilder()
 	.setName('reload')
@@ -33,6 +32,13 @@ const data = new SlashCommandBuilder()
 			])
 		)
 	)
+
+const authed = []
+function authorized(inter) {
+	if (inter.user.id in authed) {
+		return true
+	}; return false
+}
 
 async function func(interaction,client) {
 	switch (interaction.options.getSubcommand(true)) {

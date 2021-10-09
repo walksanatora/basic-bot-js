@@ -17,7 +17,7 @@ for (const file of commandFiles) {
 }
 console.log(commands)
 
-const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({ version: '9' }).setToken(require('./config.json').token);
 
 (async () => {
 	try {
