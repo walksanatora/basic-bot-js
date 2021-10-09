@@ -1,4 +1,3 @@
-require('dotenv').config()
 const discord = require('discord.js')
 const fs = require('fs');
 
@@ -66,4 +65,4 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(require('./config.json').token);
