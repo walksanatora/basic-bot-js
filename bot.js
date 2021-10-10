@@ -5,9 +5,12 @@ const client = new discord.Client({intents: [discord.Intents.FLAGS.GUILD_MESSAGE
 
 /*
 variables in config.json
-DISCORD_TOKEN: your discord token
-DISCORD_CLIENT: the client ID of said bot
+token: your discord token
+client: the client ID of said bot
+presence: a list of presences to cycle through
 */
+
+const wittyPresences = require('./config.json').presence
 
 client.once('ready', async () => {
 	console.log(`Bot is logged in and ready! with tag ${client.user.tag}`);
