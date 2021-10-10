@@ -14,7 +14,7 @@ const data = new SlashCommandBuilder()
 	)
 
 async function func(interaction,client){
-	if (interaction.option.getString('command') == undefined) { 
+	if (interaction.options.getString('command') == undefined) { 
 		const exampleEmbed = new discord.MessageEmbed()
 			.setColor([0,255,128])
 			.setTitle('A full list of commands')
@@ -31,22 +31,30 @@ async function func(interaction,client){
 		await interaction.reply({ embeds:[exampleEmbed],ephemeral: true})
 	} else {
 		try {
-			const cmd = commands[interaction.option.getString('command')]
+			const cmd = commands[interaction.options.getString('command')]
 		} catch (err) {
 			await interaction.reply({content:'invalid command',ephemeral:true})
 			return
 		}
-		if (interaction.option.getString('subcommand') == undefined){
+		const cmd = commands[interaction.options.getString('command')]
+		if (interaction.options.getString('subcommand') == undefined){
 			const exampleEmbed = new discord.MessageEmbed()
 				.setColor([0,255,128])
 				.setTitle(cmd.data.name)
 				.addField('help string',cmd.help.long)
+			if (cmd.help.subCommands != undefined) {
+				var subcmds = ''
+				Object.keys(cmd.help.subCommands).forEach(name =>
+					subcmds = subcmds + `${name}, `
+				)
+				exampleEmbed.addField('subcommands',subcmds)
+			}
 			await interaction.reply({embeds: [exampleEmbed],ephemeral: true})
-		} else if (cmd.help.subCommands[interaction.option.getString('subcommand')] != undefined) {
+		} else if (cmd.help.subCommands[interaction.options.getString('subcommand')] != undefined) {
 			const exampleEmbed = new discord.MessageEmbed()
 				.setColor([0,255,128])
-				.setTitle(`${cmd.data.name}:${interaction.option.getString('subcommand')}`)
-				.addField('help string',cmd.help.subCommands[interaction.option.getString('subcommand')])
+				.setTitle(`${cmd.data.name}:${interaction.options.getString('subcommand')}`)
+				.addField('help string',cmd.help.subCommands[interaction.options.getString('subcommand')])
 			await interaction.reply({embeds: [exampleEmbed],ephemeral: true})
 		} else {
 			await interaction.reply({content:'subcommand not found',ephemeral: true})
