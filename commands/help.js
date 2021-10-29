@@ -47,6 +47,7 @@ async function func(interaction,client){
 				Object.keys(cmd.help.subCommands).forEach(name =>
 					subcmds = subcmds + `${name}, `
 				)
+				subcmds = subcmds.substr(0,subcmds.length-2)
 				exampleEmbed.addField('subcommands',subcmds)
 			}
 			await interaction.reply({embeds: [exampleEmbed],ephemeral: true})

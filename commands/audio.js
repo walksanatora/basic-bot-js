@@ -19,7 +19,7 @@ files.forEach(element => {
 })
 
 
-console.log('generated audio ',audio)
+console.log('located audio ',audio)
 
 const data = new SlashCommandBuilder()
 	.setName('audio')

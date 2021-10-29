@@ -11,7 +11,7 @@ const data = new SlashCommandBuilder()
 	.setDescription('returns OS information')
 
 async function func(interaction,client) {
-	ramUsage = require('../tmp.js')
+	ramUsage = JSON.parse(execSync('sh -c ./getRam.sh').toString())
 	stats = ''
 	versions = ''
 	stats = stats + `Arch:       ${execSync('arch').toString()}`
