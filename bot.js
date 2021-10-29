@@ -1,6 +1,8 @@
 const discord = require('discord.js')
 const fs = require('fs');
 
+const cfg = require('./config.json')
+
 const client = new discord.Client({intents: [discord.Intents.FLAGS.GUILD_MESSAGES,discord.Intents.FLAGS.GUILDS]});
 
 /*
@@ -10,7 +12,7 @@ client: the client ID of said bot
 presence: a list of presences to cycle through
 */
 
-const wittyPresences = require('./config.json').presence
+const wittyPresences = cfg.presence
 
 client.once('ready', async () => {
 	console.log(`Bot is logged in and ready! with tag ${client.user.tag}`);
@@ -68,4 +70,4 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
-client.login(require('./config.json').token);
+client.login(cfg.token);
