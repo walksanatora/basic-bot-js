@@ -55,7 +55,11 @@ async function func(interaction,client){
 
 module.exports={
 	'data':data, //slash command
-	'helpStr':"slowly drains sanity", //sting to be used when the help command is called
+	'help':{
+		short: 'steals sanity',
+		long: 'plays audio in the vc you are in, stealing other sanity',
+		subCommands: false
+	}, //sting to be used when the help command is called
 	'canDeploy':false, //can this command be deployed globally to all guilds
 	'guildIds':['783738781097263140'], //guildIDs to deploy to (for specific commands) (strings)
 	'function': func //async function to be executed when the command is run
