@@ -30,7 +30,7 @@ const data = new SlashCommandBuilder()
 		.addChoices(caudio)
 	)
 async function func(interaction,client){
-	if (interaction.member.voice.channel.id == null){await interaction.reply({content:'join a vc',ephemeral: true}); return} 
+	if (interaction.member.voice.channelId == null){await interaction.reply({content:'join a vc',ephemeral: true}); return} 
 	var connection = joinVoiceChannel({
 		channelId: interaction.member.voice.channel.id,
 		guildId: interaction.channel.guild.id,
