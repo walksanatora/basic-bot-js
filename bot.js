@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const cfg = require('./config.json')
 
-const client = new discord.Client({intents: [discord.Intents.FLAGS.GUILD_MESSAGES,discord.Intents.FLAGS.GUILDS]});
+const client = new discord.Client({intents: [discord.Intents.FLAGS.GUILD_MESSAGES,discord.Intents.FLAGS.GUILDS,discord.Intents.FLAGS.GUILD_VOICE_STATES]});
 
 /*
 variables in config.json
