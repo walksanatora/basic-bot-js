@@ -33,7 +33,7 @@ const data = new SlashCommandBuilder()
 		)
 	)
 
-const authed = []
+const authed = ['596098777941540883']
 function authorized(inter) {
 	if (inter.user.id in authed) {
 		return true
