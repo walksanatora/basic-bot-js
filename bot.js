@@ -64,7 +64,9 @@ client.on('interactionCreate', async interaction => {
 				tmp['value'] = files[index]
 				resp.push(tmp)
 			}
+			console.log('responding')
 			interaction.respond(resp)
+			console.log('responded')
 		}
 	}
 });
