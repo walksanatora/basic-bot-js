@@ -34,39 +34,29 @@ for (const file of commandFiles) {
 	commands[command.data.name] = command
 }
 
-client.on('messageCreate', async message => {
-	const db = require('./storage.json')
-	var con = message.content.trim()
-	if (con.startsWith('p!')) {
-		con = con.substr(2)
-		const cmd = con.split(' ')
-		console.log(cmd)
-		switch (cmd[0]) {
-			case 'user':
-				message.reply({content: JSON.stringify(db.user[cmd[1]])})
-			break;
-			case 'server':
-				message.reply({content: JSON.stringify(db.server[message.guild.id])})
-			break;
-			default:
-				break;
-		}
-	}
-})
-
 client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
-	console.log(`Invoking /command ${interaction.commandName} from user ${interaction.user.username}`)
-	try {
-		await commands[interaction.commandName].function(interaction,client)	
-	} catch (error) {
-		console.log('ERROR OCCURRED OHNO!!!')
-		const exampleEmbed = new discord.MessageEmbed()
-			.setColor('#ff0000')
-			.setTitle('Error occured')
-			.addField('Excpetion',error.toString())
-		console.log(error.stack)
-		await interaction.reply({embeds: [exampleEmbed]})
+	if (interaction.isCommand()){
+		console.log(`Invoking /command ${interaction.commandName} from user ${interaction.user.username}`)
+		try {
+			await commands[interaction.commandName].function(interaction,client)	
+		} catch (error) {
+			console.log('ERROR OCCURRED OHNO!!!')
+			const exampleEmbed = new discord.MessageEmbed()
+				.setColor('#ff0000')
+				.setTitle('Error occured')
+				.addField('Excpetion',error.toString())
+			console.log(error.stack)
+			await interaction.reply({embeds: [exampleEmbed]})
+		}
+	}else if (interaction.isAutocomplete()){
+		var option = interaction.options.getFocused(true).name
+		var command = interaction.commandName
+		var current = interaction.options.get(option).value
+		console.log(`
+		command: ${command}\n
+		option: ${option}\n
+		current: ${current}	
+		`)
 	}
 });
 

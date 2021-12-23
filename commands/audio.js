@@ -27,7 +27,7 @@ const data = new SlashCommandBuilder()
 	.addStringOption((opt)=>
 		opt.setName('file')
 		.setDescription('the audio file to play')
-		.addChoices(caudio)
+		.setAutocomplete(true)
 	)
 async function func(interaction,client){
 	if (interaction.member.voice.channelId == null){await interaction.reply({content:'join a vc',ephemeral: true}); return} 
