@@ -1,5 +1,6 @@
 const discord = require('discord.js')
 const fs = require('fs');
+const glob = require('glob')
 
 const cfg = require('./config.json')
 
@@ -52,11 +53,9 @@ client.on('interactionCreate', async interaction => {
 		var option = interaction.options.getFocused(true).name
 		var command = interaction.commandName
 		var current = interaction.options.get(option).value
-		console.log(`
-		command: ${command}\n
-		option: ${option}\n
-		current: ${current}	
-		`)
+		if (command == 'audio') {
+			interaction.respond(glob.GlobSync(`**/audio/${current}*`).found)
+		}
 	}
 });
 

@@ -8,19 +8,6 @@ const player = createAudioPlayer({
 	},
 });
 
-const audio = []
-const caudio = []
-
-files = fs.readdirSync('./audio')
-files.forEach(element => {
-	var t = [element,element]
-	caudio.push(t)
-	audio.push(element)
-})
-
-
-console.log('located audio ',audio)
-
 const data = new SlashCommandBuilder()
 	.setName('audio')
 	.setDescription('kills your sanity')
@@ -29,6 +16,7 @@ const data = new SlashCommandBuilder()
 		.setDescription('the audio file to play')
 		.setAutocomplete(true)
 	)
+
 async function func(interaction,client){
 	if (interaction.member.voice.channelId == null){await interaction.reply({content:'join a vc',ephemeral: true}); return} 
 	var connection = joinVoiceChannel({
