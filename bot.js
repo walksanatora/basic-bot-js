@@ -59,7 +59,10 @@ client.on('interactionCreate', async interaction => {
 			var files = glob.GlobSync(`**/audio/${current}*`).found
 			var resp = []
 			for (let index = 0; index < files.length; index++) {
-				resp[files[index]] = files[index];
+				var tmp = {}
+				tmp['name'] = files[index]
+				tmp['value'] = files[index]
+				resp.push(tmp)
 			}
 			interaction.respond(resp)
 		}
