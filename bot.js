@@ -65,7 +65,7 @@ client.on('interactionCreate', async interaction => {
 				resp.push(tmp)
 			}
 			console.log('responding')
-			interaction.respond(resp)
+			await interaction.respond(resp)
 			console.log('responded')
 		}
 	}
