@@ -54,7 +54,12 @@ client.on('interactionCreate', async interaction => {
 		var command = interaction.commandName
 		var current = interaction.options.get(option).value
 		if (command == 'audio') {
-			interaction.respond(glob.GlobSync(`**/audio/${current}*`).found)
+			var files = glob.GlobSync(`**/audio/${current}*`).found
+			var resp = []
+			for (let index = 0; index < files.length; index++) {
+				resp[files[index]] = files[index];
+			}
+			interaction.respond(resp)
 		}
 	}
 });

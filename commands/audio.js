@@ -27,7 +27,7 @@ async function func(interaction,client){
 	player.stop(true)
 	var afile = interaction.options.getString('file')
 	if(afile == null) {afile = audio[Math.floor(Math.random()*audio.length)]}
-	var audioResource = createAudioResource(`./audio/${afile}`)
+	var audioResource = createAudioResource(`./${afile}`)
 	player.play(audioResource)
 	connection.subscribe(player)
 	await interaction.reply({content:afile,ephemeral: true})
